@@ -1,0 +1,84 @@
+@baseUrl = http://localhost:5000
+@urlPath = api/v1
+
+###1
+GET {{baseUrl}}/{{{urlPath}}}/chat/message/conversation-list
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+
+###2
+GET {{baseUrl}}/{{{urlPath}}}/chat/message/user/<receiverId>
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+
+###3
+POST {{baseUrl}}/{{{urlPath}}}/chat/message
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+{
+  "conversationId":"",
+  "receiverId":"",
+  "receiverUsername":"",
+  "receiverProfilePicture":"<cloudinary-user-profile-picture-url>",
+  "body":"",
+  "gifUrl":"",
+  "isRead":false,
+  "selectedImage":""
+}
+
+###4
+POST {{baseUrl}}/{{{urlPath}}}/chat/message/add-chat-users
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+{
+  "userOne":"",
+  "userTwo":""
+}
+
+
+###5
+POST {{baseUrl}}/{{{urlPath}}}/chat/message/remove-chat-users
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+{
+  "userOne":"",
+  "userTwo":""
+}
+
+
+###6
+PUT {{baseUrl}}/{{{urlPath}}}/chat/message/mark-as-read
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+{
+  "senderId":"",
+  "receiverId":""
+}
+
+
+###7
+PUT {{baseUrl}}/{{{urlPath}}}/chat/message/reaction
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+# For this endpoint, the type is either add or remove
+{
+  "conversationId": "",
+  "messageId": "",
+  "reaction": "",
+  "type": ""
+}
+
+
+###8
+DELETE {{baseUrl}}/{{{urlPath}}}/chat/message/mark-as-deleted/<messageId>/<senderId>/<receiverId>/<type>
+# For this endpoint, the type is either deleteForMe or deleteForEveryone
+Content-Type:application/json
+Accept: application/json
+withCredentials:true
